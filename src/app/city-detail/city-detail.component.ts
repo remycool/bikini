@@ -1,4 +1,4 @@
-import { Component, OnInit,TemplateRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Station } from '../station';
@@ -15,23 +15,28 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   templateUrl: './city-detail.component.html',
   styleUrls: ['./city-detail.component.css']
 })
-export class CityDetailComponent implements OnInit {
+export class CityDetailComponent implements OnInit, OnDestroy {
   stations: Station[];
-  selectedStation : Station;
+  selectedStation: Station;
   bsModalRef: BsModalRef;
+  IntervalId: any;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private stationService: StationService,
     private localisationService: LocalisationService,
-  private modalService:BsModalService) { }
+    private modalService: BsModalService) { }
 
   ngOnInit() {
-    this.localisationService.localize();
     this.getStations();
-    setInterval(() => { this.getStations(); }, CHAQUE_MINUTE);
-    this.stationService.selectedStation.subscribe(station=> this.selectedStation=station)
+    this.IntervalId = setInterval(() => { this.getStations(); }, CHAQUE_MINUTE);
+    this.stationService.selectedStation.subscribe(station => this.selectedStation = station)
+  }
+
+  ngOnDestroy() {
+    if (this.IntervalId)
+      clearInterval(this.IntervalId);
   }
 
   getStations(): void {
@@ -46,7 +51,7 @@ export class CityDetailComponent implements OnInit {
         }
 
         );
-        this.stations = stations.sort((a,b)=> a.distance - b.distance)
+        this.stations = stations.sort((a, b) => a.distance - b.distance)
         // this.stations = stations.sort((a, b): number => {
         //   if (a.name < b.name) return -1;
         //   if (a.name > b.name) return 1;
@@ -75,11 +80,11 @@ export class CityDetailComponent implements OnInit {
     return level;
   }
 
-  private selectStation(station:Station){
+  private selectStation(station: Station) {
     this.stationService.actualizeStation(station);
   }
 
-  openStationModal(station:Station,template: TemplateRef<any>){
+  openStationModal(station: Station, template: TemplateRef<any>) {
     this.selectStation(station);
     this.bsModalRef = this.modalService.show(template);
   }

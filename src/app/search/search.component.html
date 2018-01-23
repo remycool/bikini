@@ -1,0 +1,17 @@
+<div id="search">
+  <span id="icon" (click)="toggleState()">
+    <i  class="fa fa-search fa-2x"></i>
+  </span>
+  <form class="form-inline">
+
+    <input #searchBox class="form-control" [@searchState]="state" type="text" placeholder="Search" (keyup)="search(searchBox.value)"
+      (blur)="searchBox.value=''">
+      <ul class="list-group">
+          <li class="list-group-item" *ngFor="let result of results" (clic)="select(result)">
+            {{result.name}}
+           
+          </li>
+        </ul>
+  </form>
+  
+</div>

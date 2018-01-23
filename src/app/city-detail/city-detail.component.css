@@ -10,6 +10,12 @@
     display:block;
   }
 
+	#search-position{
+		/* position:fixed;
+		top:50px;
+		right:10px; */
+
+	}
 
   @media 
   only screen and (max-width: 500px){

@@ -12,6 +12,7 @@ import { LocalisationService } from './localisation.service';
 import { AgmCoreModule } from '@agm/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { StationComponent } from './station/station.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AppComponent,
     CitiesComponent,
     CityDetailComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    StationComponent
     
   ],
   imports: [

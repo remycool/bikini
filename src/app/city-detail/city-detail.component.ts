@@ -80,13 +80,14 @@ export class CityDetailComponent implements OnInit, OnDestroy {
     return level;
   }
 
-  private selectStation(station: Station) {
+  private onSelect(station: Station) {
     this.stationService.actualizeStation(station);
   }
 
-  openStationModal(station: Station, template: TemplateRef<any>) {
-    this.selectStation(station);
-    this.bsModalRef = this.modalService.show(template);
-  }
+  
+  // openStationModal(station: Station, template: TemplateRef<any>) {
+  //   this.selectStation(station);
+  //   this.bsModalRef = this.modalService.show(template);
+  // }
 }
 

@@ -20,6 +20,7 @@ export class CityDetailComponent implements OnInit, OnDestroy {
   selectedStation: Station;
   bsModalRef: BsModalRef;
   IntervalId: any;
+  currentCityName: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,24 +41,20 @@ export class CityDetailComponent implements OnInit, OnDestroy {
   }
 
   getStations(): void {
-    const city = this.route.snapshot.paramMap.get('name');
+    this.currentCityName = this.route.snapshot.paramMap.get('name');
     //tri les stations par ordre alphabétique et formate le nom ex= 'XXX-TOTO' => 'TOTO'
-    this.stationService.getStations(city)
+    this.stationService.getStations(this.currentCityName)
       .subscribe(stations => {
         stations.forEach(s => {
-          s.name = s.name.match(/[^0-9\-]/g).join('').trim();
           if (this.localisationService.currentPosition !== null)
             s.distance = this.localisationService.getDistance(s.position);
-        }
-
-        );
+        });
         this.stations = stations.sort((a, b) => a.distance - b.distance)
-        // this.stations = stations.sort((a, b): number => {
-        //   if (a.name < b.name) return -1;
-        //   if (a.name > b.name) return 1;
-        //   return 0;
-        // })
       })
+  }
+
+  formatStationName(name: string): string {
+    return name.match(/[^0-9\-]/g).join('').trim();
   }
 
   isOpen(status: Status): string {
@@ -83,11 +80,5 @@ export class CityDetailComponent implements OnInit, OnDestroy {
   private onSelect(station: Station) {
     this.stationService.actualizeStation(station);
   }
-
-  
-  // openStationModal(station: Station, template: TemplateRef<any>) {
-  //   this.selectStation(station);
-  //   this.bsModalRef = this.modalService.show(template);
-  // }
 }
 

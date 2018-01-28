@@ -13,16 +13,16 @@ export class StationComponent implements OnInit {
 
   station: Station;
   currentCity: string;
-  
+
   constructor(
     private route: ActivatedRoute,
     private stationService: StationService,
-    private cityService: CityService, ) { }
-    
+    private cityService: CityService) { }
+
   getLevelAvailability(): string {
     const availability: number = this.station.available_bikes * 100 / this.station.bike_stands;
     var level: string = '';
-    
+
 
     if (availability < 25)
       level = 'badge-danger';
@@ -39,8 +39,13 @@ export class StationComponent implements OnInit {
 
   ngOnInit() {
     this.station = new Station();
-    this.stationService.selectedStation.subscribe(station => this.station = station);
-    this.cityService.selectedCity.subscribe(selectedCity=>this.currentCity = selectedCity);
+    const selectedStation = this.route.snapshot.paramMap.get('station-name');
+    this.currentCity = this.route.snapshot.paramMap.get('city-name');
+    this.stationService.getStations(this.currentCity)
+      .subscribe(stations => {
+        this.station = stations.find(s=> s.name===selectedStation);});
+    // this.stationService.selectedStation.subscribe(station => this.station = station);
+    // this.cityService.selectedCity.subscribe(selectedCity=>this.currentCity = selectedCity);
   }
 
 }

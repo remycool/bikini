@@ -14,8 +14,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let station of stations" class="{{isOpen(station.status)}}" routerLink="/station/{{station.name}}" (click)="onSelect(station)">
-          <td>{{station.name}}
+        <tr *ngFor="let station of stations" class="{{isOpen(station.status)}}" routerLink="/city/{{currentCityName}}/station/{{station.name}}" (click)="onSelect(station)">
+          <td>{{formatStationName(station.name)}}
           </td>
 
           <td>{{station.address}}</td>

@@ -9,14 +9,14 @@ import { Station } from './station';
 
 @Injectable()
 export class StationService {
- 
+
   constructor(private http: HttpClient) { }
 
-  private _selectedStation=  new BehaviorSubject<Station>(new Station());
-  selectedStation=this._selectedStation.asObservable();
+  private _selectedStation = new BehaviorSubject<Station>(new Station());
+  selectedStation = this._selectedStation.asObservable();
 
   getStations(city: string): Observable<Station[]> {
-    const finalUrl:string = `https://api.jcdecaux.com/vls/v1/stations?contract=${city}${API_KEY}`;
+    const finalUrl: string = `https://api.jcdecaux.com/vls/v1/stations?contract=${city}${API_KEY}`;
     return this.http.get<Station[]>(finalUrl);
   }
 

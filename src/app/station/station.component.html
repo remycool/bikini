@@ -14,7 +14,7 @@
         <i class="fa fa-chevron-circle-left fa-2x" aria-hidden="true" routerLink="/city/{{currentCity}}"></i>
       </div>
     </div>
-    <div>
+    <div *ngIf="station.position">
       <agm-map [latitude]="station.position.lat" [longitude]="station.position.lng" [zoom]="17">
         <agm-marker [latitude]="station.position.lat" [longitude]="station.position.lng" [iconUrl]="'/assets/bikiniMapMarker.png'"></agm-marker>
       </agm-map>

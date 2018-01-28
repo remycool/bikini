@@ -9,7 +9,7 @@ import { StationComponent } from './station/station.component';
 const routes: Routes = [
   { path: 'cities', component: CitiesComponent },
   { path: 'city/:name', component: CityDetailComponent },
-  {path:'station/:name', component:StationComponent},
+  {path:'city/:city-name/station/:station-name', component:StationComponent},
   { path: '', redirectTo: '/cities', pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent }];
 

@@ -13,7 +13,7 @@ import { AgmCoreModule } from '@agm/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { StationComponent } from './station/station.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import { StationComponent } from './station/station.component';
   imports: [
     AlertModule.forRoot(),
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     AgmCoreModule.forRoot({

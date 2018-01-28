@@ -56,7 +56,7 @@
               {{station.address}}
               <br> à {{station.distance}} km
               <br>
-              <i class="fa fa-map fa-2x" aria-hidden="true" routerLink="/station/{{station.name}}" (click)="onSelect(station)"></i>
+              <i class="fa fa-map fa-2x" aria-hidden="true" routerLink="/city/{{currentCityName}}/station/{{station.name}}" (click)="onSelect(station)"></i>
             </div>
           </td>
           <td>

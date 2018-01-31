@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Station } from '../station';
 import { ActivatedRoute } from '@angular/router';
 import { StationService } from '../station.service';
-import { CityService } from '../city.service';
 
 @Component({
   selector: 'app-station',
@@ -16,13 +15,11 @@ export class StationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private stationService: StationService,
-    private cityService: CityService) { }
+    private stationService: StationService) { }
 
   getLevelAvailability(): string {
     const availability: number = this.station.available_bikes * 100 / this.station.bike_stands;
     var level: string = '';
-
 
     if (availability < 25)
       level = 'badge-danger';
@@ -38,14 +35,15 @@ export class StationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.station = new Station();
+    //this.station = new Station();
     const selectedStation = this.route.snapshot.paramMap.get('station-name');
     this.currentCity = this.route.snapshot.paramMap.get('city-name');
     this.stationService.getStations(this.currentCity)
       .subscribe(stations => {
-        this.station = stations.find(s=> s.name===selectedStation);});
-    // this.stationService.selectedStation.subscribe(station => this.station = station);
-    // this.cityService.selectedCity.subscribe(selectedCity=>this.currentCity = selectedCity);
+        this.station = stations.find(s => s.name === selectedStation);
+      });
+
   }
+
 
 }

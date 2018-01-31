@@ -21,6 +21,7 @@ export class CityDetailComponent implements OnInit, OnDestroy {
   bsModalRef: BsModalRef;
   IntervalId: any;
   currentCityName: string;
+  isBadRequest: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,9 +31,11 @@ export class CityDetailComponent implements OnInit, OnDestroy {
     private modalService: BsModalService) { }
 
   ngOnInit() {
+    this.isBadRequest = false;
     this.getStations();
     this.IntervalId = setInterval(() => { this.getStations(); }, CHAQUE_MINUTE);
-    this.stationService.selectedStation.subscribe(station => this.selectedStation = station)
+    this.stationService.selectedStation.subscribe(station => this.selectedStation = station);
+
   }
 
   ngOnDestroy() {
@@ -50,6 +53,8 @@ export class CityDetailComponent implements OnInit, OnDestroy {
             s.distance = this.localisationService.getDistance(s.position);
         });
         this.stations = stations.sort((a, b) => a.distance - b.distance)
+      }, e => {
+        this.isBadRequest = true;
       })
   }
 

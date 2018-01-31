@@ -1,72 +1,78 @@
-<div class="row" id="large">
-  <div class="col">
-    <table class="table table-striped table-hover">
-      <thead class="thead-inverse">
-        <tr>
-          <th scope="col">Station
-            <i *ngIf="!stations" class="fa fa-refresh fa-spin "></i>
-            <span class="sr-only">Loading...</span>
-            <span *ngIf="stations" class="badge badge-success">{{stations.length}}</span>
-          </th>
-          <th scope="col">Adresse</th>
-          <th scope="col">Distance</th>
-          <th>Vélos disponibles</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let station of stations" class="{{isOpen(station.status)}}" routerLink="/city/{{currentCityName}}/station/{{station.name}}" (click)="onSelect(station)">
-          <td>{{formatStationName(station.name)}}
-          </td>
-
-          <td>{{station.address}}</td>
-          <td>{{station.distance}} km</td>
-          <td>
-            <span *ngIf="stations" class="badge {{getLevelAvailability(station)}}">
-              {{station.available_bikes}}</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
+<div *ngIf="!isBadRequest; else message">
+  <div class="row" id="large" >
+    <div class="col">
+      <table class="table table-striped table-hover">
+        <thead class="thead-inverse">
+          <tr>
+            <th scope="col">Station
+              <i *ngIf="!stations" class="fa fa-refresh fa-spin "></i>
+              <span class="sr-only">Loading...</span>
+              <span *ngIf="stations" class="badge badge-success">{{stations.length}}</span>
+            </th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Distance</th>
+            <th>Vélos disponibles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let station of stations" class="{{isOpen(station.status)}}" routerLink="/city/{{currentCityName}}/station/{{station.name}}"
+            (click)="onSelect(station)">
+            <td>{{formatStationName(station.name)}}
+            </td>
+            <td>{{station.address}}</td>
+            <td>{{station.distance}} km</td>
+            <td>
+              <span *ngIf="stations" class="badge {{getLevelAvailability(station)}}">
+                {{station.available_bikes}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+  <div class="row" id="small">
+    <div class="col">
+      <table class="table table-striped table-hover">
+        <thead class="thead-inverse">
+          <tr>
+            <th scope="col">Station
+              <i *ngIf="!stations" class="fa fa-refresh fa-spin "></i>
+              <span class="sr-only">Loading...</span>
+              <span *ngIf="stations" class="badge badge-success">{{stations.length}}</span>
+            </th>
+            <th>Vélos disponibles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let station of stations" class="{{isOpen(station.status)}}">
+            <td>
+              <a data-toggle="collapse" href="#info-{{station.number}}" aria-expanded="false" aria-controls="collapseExample" id="info">
+                {{station.name}}
+              </a>
 
-</div>
-
-<div class="row" id="small">
-  <div class="col">
-    <table class="table table-striped table-hover">
-      <thead class="thead-inverse">
-        <tr>
-          <th scope="col">Station
-            <i *ngIf="!stations" class="fa fa-refresh fa-spin "></i>
-            <span class="sr-only">Loading...</span>
-            <span *ngIf="stations" class="badge badge-success">{{stations.length}}</span>
-          </th>
-          <th>Vélos disponibles</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let station of stations" class="{{isOpen(station.status)}}">
-          <td>
-            <a data-toggle="collapse" href="#info-{{station.number}}" aria-expanded="false" aria-controls="collapseExample" id="info">
-              {{station.name}}
-            </a>
-          
-            <div class="collapse" id="info-{{station.number}}">
-              {{station.address}}
-              <br> à {{station.distance}} km
-              <br>
-              <i class="fa fa-map fa-2x" aria-hidden="true" routerLink="/city/{{currentCityName}}/station/{{station.name}}" (click)="onSelect(station)"></i>
-            </div>
-          </td>
-          <td>
-            <span *ngIf="stations" class="badge {{getLevelAvailability(station)}}">
-              {{station.available_bikes}}</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
+              <div class="collapse" id="info-{{station.number}}">
+                {{station.address}}
+                <br> à {{station.distance}} km
+                <br>
+                <i class="fa fa-map fa-2x" aria-hidden="true" routerLink="/city/{{currentCityName}}/station/{{station.name}}" (click)="onSelect(station)"></i>
+              </div>
+            </td>
+            <td>
+              <span *ngIf="stations" class="badge {{getLevelAvailability(station)}}">
+                {{station.available_bikes}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-
 </div>
+<ng-template #message>
+    <div class="row">
+        <div class="col">
+          <h3>Oups...la ville est introuvable...</h3>
+          <h4>retour à la sélection de la ville</h4>
+          <i class="fa fa-chevron-circle-left fa-5x" aria-hidden="true" routerLink="/"></i>
+        </div>
+      </div>
+</ng-template>

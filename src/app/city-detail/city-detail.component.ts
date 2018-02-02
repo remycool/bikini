@@ -22,6 +22,7 @@ export class CityDetailComponent implements OnInit, OnDestroy {
   IntervalId: any;
   currentCityName: string;
   isBadRequest: boolean;
+  isMobile:boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class CityDetailComponent implements OnInit, OnDestroy {
     private modalService: BsModalService) { }
 
   ngOnInit() {
+    this.isMobile= window.innerWidth <700;
     this.isBadRequest = false;
     this.getStations();
     this.IntervalId = setInterval(() => { this.getStations(); }, CHAQUE_MINUTE);

@@ -39,6 +39,7 @@ import {
 
 export class SearchComponent implements OnInit {
   @Input() stations: Station[];
+  @Input() city: string;
   results: Station[];
 
   constructor() { }

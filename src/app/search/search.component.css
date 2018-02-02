@@ -1,0 +1,19 @@
+#search{
+    position:fixed;
+    right:20px;
+    top:5px; 
+    z-index: 100;
+}
+#icon{
+    padding:3px;
+    color:#46bfb0;
+}
+.input-group-addon {
+    background-color:transparent;
+}
+.list-group{
+    background-color: #96a2ac;
+}
+.form-inline{
+    display:inline;
+}

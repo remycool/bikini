@@ -13,6 +13,7 @@ import { AgmCoreModule } from '@agm/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { StationComponent } from './station/station.component';
+import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CitiesComponent,
     CityDetailComponent,
     PageNotFoundComponent,
-    StationComponent
+    StationComponent,
+    SearchComponent
     
   ],
   imports: [
@@ -33,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBq_t5qPHzeth6FRotgPoStA3uJP-ZTrxY'
     }),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [CityService, StationService, LocalisationService],
   bootstrap: [AppComponent]

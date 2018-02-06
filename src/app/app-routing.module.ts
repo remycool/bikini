@@ -5,12 +5,13 @@ import { CitiesComponent } from './cities/cities.component';
 import { CityDetailComponent } from './city-detail/city-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { StationComponent } from './station/station.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'cities', component: CitiesComponent },
   { path: 'city/:name', component: CityDetailComponent },
   {path:'city/:city-name/station/:station-name', component:StationComponent},
-  { path: '', redirectTo: '/cities', pathMatch: 'full'},
+  { path: '', component: HomeComponent},
   { path: '**', component: PageNotFoundComponent }];
 
 

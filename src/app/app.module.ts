@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { StationComponent } from './station/station.component';
 import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CityDetailComponent,
     PageNotFoundComponent,
     StationComponent,
-    SearchComponent
+    SearchComponent,
+    HomeComponent
     
   ],
   imports: [

@@ -12,7 +12,7 @@ export class StationComponent implements OnInit {
 
   station: Station;
   currentCity: string;
-
+  link:string;
   constructor(
     private route: ActivatedRoute,
     private stationService: StationService) { }
@@ -42,7 +42,7 @@ export class StationComponent implements OnInit {
       .subscribe(stations => {
         this.station = stations.find(s => s.name === selectedStation);
       });
-
+      this.link=`/city/${this.currentCity}`;
   }
 
 

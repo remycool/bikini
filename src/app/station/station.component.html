@@ -1,3 +1,4 @@
+<app-navigation [link]="link" [city]="currentCity"></app-navigation>
 <div class="row" *ngIf="station; else message">
   <div class="col">
     <div class="row">
@@ -9,9 +10,6 @@
       <div class="col">
         <span class="badge {{getLevelAvailability()}}">
           {{station.available_bikes}}</span> vélos disponibles
-      </div>
-      <div id="back-button">
-        <i class="fa fa-chevron-circle-left fa-5x" aria-hidden="true" routerLink="/city/{{currentCity}}" ng-click="toggle()"></i>
       </div>
     </div>
     <div *ngIf="station.position">

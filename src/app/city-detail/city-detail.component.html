@@ -1,3 +1,5 @@
+<app-navigation [link]="'/cities'" [city]="currentCityName" ></app-navigation>
+
 <div *ngIf="!isBadRequest; else message">
   <app-search [stations]="stations" [city]="currentCityName"></app-search>
   <div class="row" *ngIf="!isMobile; else mobile">

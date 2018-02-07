@@ -3,6 +3,7 @@ import { City } from '../city';
 import { CityService } from '../city.service';
 import { Location } from '@angular/common';
 
+
 @Component({
   selector: 'app-cities',
   templateUrl: './cities.component.html',

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Station } from '../station';
 import { ActivatedRoute } from '@angular/router';
 import { StationService } from '../station.service';
+import { CookieService } from '../cookie.service';
 
 @Component({
   selector: 'app-station',
@@ -9,13 +10,15 @@ import { StationService } from '../station.service';
   styleUrls: ['./station.component.css']
 })
 export class StationComponent implements OnInit {
+  countrySelected: any;
 
   station: Station;
   currentCity: string;
   link:string;
   constructor(
     private route: ActivatedRoute,
-    private stationService: StationService) { }
+    private stationService: StationService,
+  private cookieService:CookieService) { }
 
   getLevelAvailability(): string {
     const availability: number = this.station.available_bikes * 100 / this.station.bike_stands;
@@ -43,6 +46,7 @@ export class StationComponent implements OnInit {
         this.station = stations.find(s => s.name === selectedStation);
       });
       this.link=`/city/${this.currentCity}`;
+      this.countrySelected = this.cookieService.loadCountryFromCookie('country');
   }
 
 

@@ -19,7 +19,7 @@
 }
 
 .middle{
-    top:12em;
+    top:8em;
 }
 
 h1{
@@ -30,7 +30,7 @@ h1{
     animation-fill-mode: forwards; 
 }
 
-img{
+#logo{
     cursor: pointer;
     opacity: 0;
     animation-duration:1s;
@@ -38,6 +38,4 @@ img{
     animation-delay: 500ms;
     animation-fill-mode: forwards; 
 }
-
-  
   

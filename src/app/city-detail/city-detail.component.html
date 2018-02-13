@@ -1,4 +1,4 @@
-<app-navigation [link]="'/cities'" [city]="currentCityName" ></app-navigation>
+<app-navigation [link]="'/cities'" [country]="countrySelected" [city]="currentCityName" ></app-navigation>
 
 <div *ngIf="!isBadRequest; else message">
   <app-search [stations]="stations" [city]="currentCityName"></app-search>

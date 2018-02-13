@@ -1,5 +1,8 @@
-<app-navigation [link]="''" ></app-navigation>
-<div class="row">
+<app-navigation [link]="''" [country]="countrySelected" ></app-navigation>
+
+<app-country [currentCountry]="countrySelected"></app-country>
+
+<div class="row" *ngIf="countrySelected">
   <div class="col">
     <table class="table table-striped table-hover">
       <thead class="thead-inverse">
@@ -18,3 +21,10 @@
     </table>
   </div>
 </div>
+
+<ng-template #chooseCountry>
+  <div class="col">
+    <h4>Sélectionner votre pays</h4>
+  </div>
+
+</ng-template>

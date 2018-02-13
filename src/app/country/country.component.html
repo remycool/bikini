@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col">
+    <span class="fa fa-globe fa-5x" (click)="openModal(template)"></span>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">countries</h4>
+    <i *ngIf="!result" class="fa fa-refresh fa-spin "></i>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="list-group">
+      <a href="/cities" class="list-group-item" *ngFor="let r of result" (click)="saveCountry(r.name,r.alpha2Code)">
+        {{r.name}}
+      </a>
+    </div>
+  </div>
+</ng-template>

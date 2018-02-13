@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Station } from '../station';
@@ -6,8 +6,8 @@ import { StationService } from '../station.service';
 import { Status } from '../status';
 import { CLOSED, CHAQUE_MINUTE } from '../constantes';
 import { LocalisationService } from '../localisation.service';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { CookieService } from '../cookie.service';
+
 
 
 @Component({
@@ -18,18 +18,20 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 export class CityDetailComponent implements OnInit, OnDestroy {
   stations: Station[];
   selectedStation: Station;
-  bsModalRef: BsModalRef;
   IntervalId: any;
   currentCityName: string;
   isBadRequest: boolean;
   isMobile:boolean;
+  countrySelected:any;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private stationService: StationService,
     private localisationService: LocalisationService,
-    private modalService: BsModalService) { }
+    private cookieService: CookieService
+
+    ) { }
 
   ngOnInit() {
     this.isMobile= window.innerWidth <700;
@@ -37,6 +39,7 @@ export class CityDetailComponent implements OnInit, OnDestroy {
     this.getStations();
     this.IntervalId = setInterval(() => { this.getStations(); }, CHAQUE_MINUTE);
     this.stationService.selectedStation.subscribe(station => this.selectedStation = station);
+    this.countrySelected = this.cookieService.loadCountryFromCookie('country');
 
   }
 

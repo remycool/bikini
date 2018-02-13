@@ -6,6 +6,7 @@ import { CityDetailComponent } from './city-detail/city-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { StationComponent } from './station/station.component';
 import { HomeComponent } from './home/home.component';
+import { CountryComponent } from './country/country.component';
 
 const routes: Routes = [
   { path: 'cities', component: CitiesComponent },

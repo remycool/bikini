@@ -17,6 +17,9 @@ import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { CountryService } from './country.service';
+import { CountryComponent } from './country/country.component';
+import { CookieService } from './cookie.service';
 
 @NgModule({
   declarations: [
@@ -27,10 +30,11 @@ import { NavigationComponent } from './navigation/navigation.component';
     StationComponent,
     SearchComponent,
     HomeComponent,
-    NavigationComponent
-    
+    NavigationComponent,
+    CountryComponent
   ],
   imports: [
+    ModalModule.forRoot(),
     AlertModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
@@ -39,10 +43,9 @@ import { NavigationComponent } from './navigation/navigation.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBq_t5qPHzeth6FRotgPoStA3uJP-ZTrxY'
     }),
-    ModalModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [CityService, StationService, LocalisationService],
+  providers: [CityService, StationService, LocalisationService, CountryService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

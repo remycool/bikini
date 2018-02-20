@@ -3,6 +3,7 @@ import { City } from '../city';
 import { CityService } from '../city.service';
 import { Location } from '@angular/common';
 import { CookieService } from '../cookie.service';
+import { Language } from '../Language';
 
 @Component({
   selector: 'app-cities',
@@ -13,13 +14,18 @@ export class CitiesComponent implements OnInit {
   cities: City[];
   selectedCity;
   countrySelected: any;
+  culture: any;
 
   constructor(private cityService: CityService,private cookieService:CookieService) { }
 
   ngOnInit() {
     this.countrySelected = this.cookieService.loadCountryFromCookie('country');
-    if (this.countrySelected)
+
+    if (this.countrySelected){
+      this.culture = Language.getPkgLang(this.countrySelected.alpha2Code);
       this.getCities();
+    }
+      
   }
 
  

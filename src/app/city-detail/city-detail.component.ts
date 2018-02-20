@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Station } from '../station';
@@ -7,6 +7,7 @@ import { Status } from '../status';
 import { CLOSED, CHAQUE_MINUTE } from '../constantes';
 import { LocalisationService } from '../localisation.service';
 import { CookieService } from '../cookie.service';
+import { Language } from '../Language';
 
 
 
@@ -21,8 +22,9 @@ export class CityDetailComponent implements OnInit, OnDestroy {
   IntervalId: any;
   currentCityName: string;
   isBadRequest: boolean;
-  isMobile:boolean;
-  countrySelected:any;
+  isMobile: boolean;
+  countrySelected: any;
+  culture: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,16 +33,19 @@ export class CityDetailComponent implements OnInit, OnDestroy {
     private localisationService: LocalisationService,
     private cookieService: CookieService
 
-    ) { }
+  ) { }
 
   ngOnInit() {
-    this.isMobile= window.innerWidth <700;
+    this.isMobile = window.innerWidth < 700;
     this.isBadRequest = false;
     this.getStations();
     this.IntervalId = setInterval(() => { this.getStations(); }, CHAQUE_MINUTE);
     this.stationService.selectedStation.subscribe(station => this.selectedStation = station);
     this.countrySelected = this.cookieService.loadCountryFromCookie('country');
-
+    if (this.countrySelected)
+      this.culture = Language.getPkgLang(this.countrySelected.alpha2Code);
+    else
+      this.culture = Language.getPkgLang('EN');
   }
 
   ngOnDestroy() {

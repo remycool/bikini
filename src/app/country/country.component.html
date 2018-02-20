@@ -6,7 +6,7 @@
 
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">countries</h4>
+    <h4 class="modal-title pull-left">{{culture.countriesLbl}}</h4>
     <i *ngIf="!result" class="fa fa-refresh fa-spin "></i>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>

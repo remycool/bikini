@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col">
         <span class="badge {{getLevelAvailability()}}">
-          {{station.available_bikes}}</span> vélos disponibles
+          {{station.available_bikes}}</span>  {{culture.availabilityLbl}}
       </div>
     </div>
     <div *ngIf="station.position">
@@ -22,8 +22,8 @@
 <ng-template #message>
   <div class="row">
     <div class="col">
-      <h3>Oups...la station est introuvable...</h3>
-      <h4>retour à la sélection de la ville</h4>
+      <h3>{{culture.errorStation}}</h3>
+      <h4>{{culture.messageErrorStation}}</h4>
       <i class="fa fa-chevron-circle-left fa-5x" aria-hidden="true" routerLink="/"></i>
     </div>
   </div>

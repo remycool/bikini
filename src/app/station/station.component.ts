@@ -3,6 +3,7 @@ import { Station } from '../station';
 import { ActivatedRoute } from '@angular/router';
 import { StationService } from '../station.service';
 import { CookieService } from '../cookie.service';
+import { Language } from '../Language';
 
 @Component({
   selector: 'app-station',
@@ -11,14 +12,14 @@ import { CookieService } from '../cookie.service';
 })
 export class StationComponent implements OnInit {
   countrySelected: any;
-
+  culture: any;
   station: Station;
   currentCity: string;
-  link:string;
+  link: string;
   constructor(
     private route: ActivatedRoute,
     private stationService: StationService,
-  private cookieService:CookieService) { }
+    private cookieService: CookieService) { }
 
   getLevelAvailability(): string {
     const availability: number = this.station.available_bikes * 100 / this.station.bike_stands;
@@ -45,8 +46,12 @@ export class StationComponent implements OnInit {
       .subscribe(stations => {
         this.station = stations.find(s => s.name === selectedStation);
       });
-      this.link=`/city/${this.currentCity}`;
-      this.countrySelected = this.cookieService.loadCountryFromCookie('country');
+    this.link = `/city/${this.currentCity}`;
+    this.countrySelected = this.cookieService.loadCountryFromCookie('country');
+    if (this.countrySelected)
+      this.culture = Language.getPkgLang(this.countrySelected.alpha2Code);
+    else
+      this.culture = Language.getPkgLang('EN');
   }
 
 

@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@keyframes clicked{
+    from{
+        background-color: initial;
+        color: initial;
+    }
+    to{
+        background-color: rgb(50, 103, 134);
+        color: rgb(184, 198, 206);
+        font-size: 1em;
+    }
+}
+
+tr:active{
+animation-name: clicked;
+animation-duration: 300ms;
+}
